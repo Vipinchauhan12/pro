@@ -1,0 +1,28 @@
+import networkx as nx
+import matplotlib.pyplot as plt
+
+graph_dict = {
+    0: [1, 3],
+    1: [0, 2],
+    2: [1, 3],
+    3: [0, 2]
+}
+
+# Build NetworkX graph
+G = nx.Graph(graph_dict)
+
+# (i) Determine whether the graph is bipartite
+is_bipartite = nx.is_bipartite(G)
+print(f"(i) Is the graph bipartite? {'Yes' if is_bipartite else 'No'}")
+
+# (ii) If bipartite, print the two sets of vertices
+if is_bipartite:
+    set_A, set_B = nx.bipartite.sets(G)
+    print(f"(ii) Bipartite vertex sets:\n     Set 1: {set_A}\n     Set 2: {set_B}")
+
+# (iii) Draw the graph using networkx
+plt.figure(figsize=(5, 5))
+pos = nx.spring_layout(G)
+nx.draw(G, pos, with_labels=True, node_color='lightblue', node_size=800, font_weight='bold')
+plt.title("Graph Visualization (Q3)")
+plt.show()
