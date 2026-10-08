@@ -1,0 +1,44 @@
+graph = {
+    0: [1, 2],
+    1: [0, 3],
+    2: [0],
+    3: [1, 4],
+    4: [3],
+    5: [6],
+    6: [5],
+    7: []
+}
+
+def count_connected_components(graph):
+    visited = set()
+    components = []
+
+    def dfs(node, current_component):
+        visited.add(node)
+        current_component.append(node)
+        for neighbor in graph[node]:
+            if neighbor not in visited:
+                dfs(neighbor, current_component)
+
+    # Find all connected components using DFS
+    for vertex in graph:
+        if vertex not in visited:
+            current_component = []
+            dfs(vertex, current_component)
+            components.append(current_component)
+
+    # (i) Number of connected components
+    num_components = len(components)
+    print(f"(i) Number of connected components: {num_components}")
+
+    # (ii) Print vertices belonging to each component
+    print("(ii) Vertices in each component:")
+    for idx, comp in enumerate(components, 1):
+        print(f"    Component {idx}: {comp}")
+
+    # (iii) Determine whether the graph is connected
+    is_connected = (num_components == 1)
+    print(f"(iii) Is the graph connected? {'Yes' if is_connected else 'No'}")
+
+# Run function
+count_connected_components(graph)
