@@ -1,0 +1,24 @@
+vertices = 5
+edges = [(0, 1), (0, 2), (1, 2), (1, 3), (2, 4), (3, 4)]
+
+# (i) Write python function adj_matrix(V, edges) that constructs & returns adjacency matrix
+def adj_matrix(V, edges):
+    matrix = [[0] * V for _ in range(V)]
+    for u, v in edges:
+        matrix[u][v] = 1
+        matrix[v][u] = 1  # Undirected graph
+    return matrix
+
+# Construct the matrix
+matrix = adj_matrix(vertices, edges)
+
+# (ii) Print the adjacency matrix
+print("(ii) Adjacency Matrix:")
+for row in matrix:
+    print(row)
+
+# (iii) Calculate the degree of every vertex from the adjacency matrix
+print("\n(iii) Degree of each vertex:")
+for vertex in range(vertices):
+    deg = sum(matrix[vertex])
+    print(f"    Vertex {vertex}: degree {deg}")
