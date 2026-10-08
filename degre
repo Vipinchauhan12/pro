@@ -1,0 +1,26 @@
+graph = {
+    0: [1, 2, 3],
+    1: [0, 2, 3],
+    2: [0, 1, 3],
+    3: [0, 1, 2]
+}
+
+# (i) Calculate degree of every vertex
+degrees = {node: len(neighbors) for node, neighbors in graph.items()}
+print("(i) Degree of every vertex:")
+for vertex, deg in degrees.items():
+    print(f"    Vertex {vertex}: degree {deg}")
+
+# (ii) Generate degree sequence in descending order
+degree_sequence = sorted(degrees.values(), reverse=True)
+print(f"\n(ii) Degree sequence (descending): {degree_sequence}")
+
+# (iii) Determine whether the graph is regular
+is_regular = len(set(degrees.values())) == 1
+print(f"(iii) Is the graph regular? {'Yes' if is_regular else 'No'}")
+
+# (iv) Print order (number of vertices) and size (number of edges) of the graph
+order = len(graph)
+size = sum(degrees.values()) // 2
+print(f"(iv) Order of graph (V): {order}")
+print(f"     Size of graph (E): {size}")
